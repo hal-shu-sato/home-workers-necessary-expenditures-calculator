@@ -14,16 +14,16 @@ export default function Calculator() {
   const [businessIncome, setBusinessIncome] = useState('');
   const [businessExpenses, setBusinessExpenses] = useState('');
   const [miscellaneousIncome, setMiscellaneousIncome] = useState('');
-  const [salaryIncome, setSalaryIncome] = useState('');
+  const [employmentIncome, setEmploymentIncome] = useState('');
 
   const businessNecessaryExpenses = Math.max(
     0,
-    650000 - Number(miscellaneousIncome || 0) - Number(salaryIncome || 0),
+    650000 - Number(miscellaneousIncome || 0) - Number(employmentIncome || 0),
   );
 
   const miscellaneousNecessaryExpenses = Math.max(
     0,
-    650000 - Number(businessIncome || 0) - Number(salaryIncome || 0),
+    650000 - Number(businessIncome || 0) - Number(employmentIncome || 0),
   );
 
   return (
@@ -92,7 +92,7 @@ export default function Calculator() {
 
             <h2>給与所得</h2>
             <TextField
-              id="salary-income"
+              id="employment-income"
               label="給与所得の収入金額"
               slotProps={{
                 input: {
@@ -104,8 +104,8 @@ export default function Calculator() {
                   ),
                 },
               }}
-              value={salaryIncome}
-              onChange={(e) => setSalaryIncome(e.target.value)}
+              value={employmentIncome}
+              onChange={(e) => setEmploymentIncome(e.target.value)}
             />
           </Stack>
         </Paper>
