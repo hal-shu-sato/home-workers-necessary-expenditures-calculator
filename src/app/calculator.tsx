@@ -1,8 +1,25 @@
 'use client';
 
+import { useState } from 'react';
+
 import { Container, InputAdornment, Stack, TextField } from '@mui/material';
 
 export default function Calculator() {
+  const [businessIncome, setBusinessIncome] = useState('');
+  const [businessExpenses, setBusinessExpenses] = useState('');
+  const [miscellaneousIncome, setMiscellaneousIncome] = useState('');
+  const [salaryIncome, setSalaryIncome] = useState('');
+
+  const businessNecessaryExpenses = Math.max(
+    0,
+    650000 - Number(miscellaneousIncome || 0) - Number(salaryIncome || 0),
+  );
+
+  const miscellaneousNecessaryExpenses = Math.max(
+    0,
+    650000 - Number(businessIncome || 0) - Number(salaryIncome || 0),
+  );
+
   return (
     <Container component="main" fixed>
       <h1>
@@ -23,6 +40,8 @@ export default function Calculator() {
               endAdornment: <InputAdornment position="end">円</InputAdornment>,
             },
           }}
+          value={businessIncome}
+          onChange={(e) => setBusinessIncome(e.target.value)}
         />
         <TextField
           id="business-expenses"
@@ -36,6 +55,8 @@ export default function Calculator() {
               endAdornment: <InputAdornment position="end">円</InputAdornment>,
             },
           }}
+          value={businessExpenses}
+          onChange={(e) => setBusinessExpenses(e.target.value)}
         />
 
         <h2>雑所得</h2>
@@ -51,6 +72,8 @@ export default function Calculator() {
               endAdornment: <InputAdornment position="end">円</InputAdornment>,
             },
           }}
+          value={miscellaneousIncome}
+          onChange={(e) => setMiscellaneousIncome(e.target.value)}
         />
 
         <h2>給与所得</h2>
@@ -65,6 +88,8 @@ export default function Calculator() {
               endAdornment: <InputAdornment position="end">円</InputAdornment>,
             },
           }}
+          value={salaryIncome}
+          onChange={(e) => setSalaryIncome(e.target.value)}
         />
 
         <h2>特例必要経費</h2>
@@ -81,6 +106,7 @@ export default function Calculator() {
               endAdornment: <InputAdornment position="end">円</InputAdornment>,
             },
           }}
+          value={businessNecessaryExpenses}
         />
         <TextField
           id="miscellaneous-necessary-expenses"
@@ -95,6 +121,7 @@ export default function Calculator() {
               endAdornment: <InputAdornment position="end">円</InputAdornment>,
             },
           }}
+          value={miscellaneousNecessaryExpenses}
         />
 
         <h2>特例適用後の必要経費の額</h2>
@@ -114,6 +141,13 @@ export default function Calculator() {
               endAdornment: <InputAdornment position="end">円</InputAdornment>,
             },
           }}
+          value={Math.min(
+            Number(businessIncome || 0),
+            miscellaneousNecessaryExpenses,
+          )}
+          disabled={
+            Number(miscellaneousIncome || 0) > businessNecessaryExpenses
+          }
         />
 
         <h4>③が⑤より多い場合</h4>
@@ -129,6 +163,11 @@ export default function Calculator() {
               endAdornment: <InputAdornment position="end">円</InputAdornment>,
             },
           }}
+          value={businessExpenses || 0}
+          disabled={
+            !miscellaneousIncome ||
+            Number(miscellaneousIncome || 0) <= businessNecessaryExpenses
+          }
         />
 
         <h3>雑所得</h3>
@@ -144,6 +183,10 @@ export default function Calculator() {
               endAdornment: <InputAdornment position="end">円</InputAdornment>,
             },
           }}
+          value={Math.min(
+            Number(miscellaneousIncome || 0),
+            miscellaneousNecessaryExpenses,
+          )}
         />
       </Stack>
     </Container>
