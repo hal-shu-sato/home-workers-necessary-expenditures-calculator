@@ -1,3 +1,5 @@
+import { CssBaseline } from '@mui/material';
+
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -14,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body>{children}</body>
+      <body>
+        <CssBaseline />
+        {children}
+      </body>
     </html>
   );
 }
