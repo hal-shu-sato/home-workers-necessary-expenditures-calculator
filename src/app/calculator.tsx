@@ -241,7 +241,7 @@ export default function Calculator() {
               }}
               value={businessExpenses || 0}
               disabled={
-                !miscellaneousIncome ||
+                Number(miscellaneousIncome || 0) === 0 ||
                 Number(miscellaneousIncome || 0) <= businessNecessaryExpenses
               }
             />
