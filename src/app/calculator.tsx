@@ -4,26 +4,48 @@ import { useState } from 'react';
 
 import {
   Container,
+  FormControl,
   InputAdornment,
+  InputLabel,
+  MenuItem,
   Paper,
+  Select,
   Stack,
   TextField,
 } from '@mui/material';
 
+function calculateMinimumEmploymentIncomeDeduction(year: number) {
+  if (year >= 2025) {
+    return 650000;
+  }
+  if (year >= 2020) {
+    return 550000;
+  }
+  return 650000;
+}
+
 export default function Calculator() {
+  const [year, setYear] = useState(2025);
   const [businessIncome, setBusinessIncome] = useState('');
   const [businessExpenses, setBusinessExpenses] = useState('');
   const [miscellaneousIncome, setMiscellaneousIncome] = useState('');
   const [employmentIncome, setEmploymentIncome] = useState('');
 
+  const minimumEmploymentIncomeDeduction =
+    calculateMinimumEmploymentIncomeDeduction(year);
+
   const businessNecessaryExpenses = Math.max(
     0,
-    650000 - Number(miscellaneousIncome || 0) - Number(employmentIncome || 0),
+    minimumEmploymentIncomeDeduction -
+      Number(miscellaneousIncome || 0) -
+      Number(employmentIncome || 0),
   );
 
   const miscellaneousNecessaryExpenses = Math.max(
     0,
-    650000 - Number(businessIncome || 0) - Number(employmentIncome || 0),
+    minimumEmploymentIncomeDeduction -
+      Number(businessIncome || 0) -
+      Number(employmentIncome || 0),
   );
 
   return (
@@ -33,6 +55,28 @@ export default function Calculator() {
       </h1>
 
       <Stack spacing={2} sx={{ mb: 2 }}>
+        <Paper variant="outlined" sx={{ p: 2 }}>
+          <Stack spacing={2}>
+            <h2>計算する年分</h2>
+            <FormControl>
+              <InputLabel id="year-label">年分</InputLabel>
+              <Select
+                labelId="year-label"
+                id="year"
+                label="年分"
+                value={year}
+                onChange={(e) => setYear(Number(e.target.value))}
+              >
+                <MenuItem value={2025}>令和7（2025）年分以降</MenuItem>
+                <MenuItem value={2020}>
+                  令和2（2020）年分から令和6（2024）年分
+                </MenuItem>
+                <MenuItem value={1988}>平成31（2019）年分以前</MenuItem>
+              </Select>
+            </FormControl>
+          </Stack>
+        </Paper>
+
         <Paper variant="outlined" sx={{ p: 2 }}>
           <Stack spacing={2}>
             <h2>事業所得</h2>
@@ -115,7 +159,7 @@ export default function Calculator() {
             <h2>特例必要経費</h2>
             <TextField
               id="business-necessary-expenses"
-              label="65万円 - ② - ④"
+              label={`${minimumEmploymentIncomeDeduction / 10000}万円 - ② - ④`}
               helperText="赤字のときは0"
               slotProps={{
                 input: {
@@ -132,7 +176,7 @@ export default function Calculator() {
             />
             <TextField
               id="miscellaneous-necessary-expenses"
-              label="65万円 - ③ - ④"
+              label={`${minimumEmploymentIncomeDeduction / 10000}万円 - ③ - ④`}
               helperText="赤字のときは0"
               slotProps={{
                 input: {
