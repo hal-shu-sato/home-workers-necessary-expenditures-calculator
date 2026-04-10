@@ -2840,17 +2840,17 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prettier-plugin-packagejson@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-packagejson/-/prettier-plugin-packagejson-3.0.0.tgz#11f64b463b6da8c73ce86dabde529699cde3f6d8"
-  integrity sha512-z8/QmPSqx/ANvvQMWJSkSq1+ihBXeuwDEYdjX3ZjRJ5Ty1k7vGbFQfhzk2eDe0rwS/TNyRjWK/qnjJEStAOtDw==
+prettier-plugin-packagejson@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-packagejson/-/prettier-plugin-packagejson-3.0.2.tgz#2b83040eedb275ef888d5ad544e7d51019dc1200"
+  integrity sha512-kmoj3hEynXwoHDo8ZhmWAIjRBoQWCDUVackiWfSDWdgD0rS3LGB61T9zoVbume/cotYdCoadUh4sqViAmXvpBQ==
   dependencies:
-    sort-package-json "3.6.0"
+    sort-package-json "^3.6.0"
 
-prettier@^3.8.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.8.1.tgz#edf48977cf991558f4fcbd8a3ba6015ba2a3a173"
-  integrity sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==
+prettier@^3.8.2:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.8.2.tgz#4f52e502193c9aa5b384c3d00852003e551bbd9f"
+  integrity sha512-8c3mgTe0ASwWAJK+78dpviD+A8EqhndQPUBpNUIPt6+xWlIigCwfN01lWr9MAede4uqXGTEKeQWTvzb3vjia0Q==
 
 prop-types@^15.6.2, prop-types@^15.8.1:
   version "15.8.1"
@@ -3176,10 +3176,10 @@ sort-object-keys@^2.0.1:
   resolved "https://registry.yarnpkg.com/sort-object-keys/-/sort-object-keys-2.1.0.tgz#af24fbb7b91fcca945399a04fa900a10f9506242"
   integrity sha512-SOiEnthkJKPv2L6ec6HMwhUcN0/lppkeYuN1x63PbyPRrgSPIuBJCiYxYyvWRTtjMlOi14vQUCGUJqS6PLVm8g==
 
-sort-package-json@3.6.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/sort-package-json/-/sort-package-json-3.6.0.tgz#6333552770203a712a13e148a6baf06a164cba15"
-  integrity sha512-fyJsPLhWvY7u2KsKPZn1PixbXp+1m7V8NWqU8CvgFRbMEX41Ffw1kD8n0CfJiGoaSfoAvbrqRRl/DcHO8omQOQ==
+sort-package-json@^3.6.0:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/sort-package-json/-/sort-package-json-3.6.1.tgz#901fe21d335af97d436383ac5b7c16c85cd3fac4"
+  integrity sha512-Chgejw1+10p2D0U2tB7au1lHtz6TkFnxmvZktyBCRyV0GgmF6nl1IxXxAsPtJVsUyg/fo+BfCMAVVFUVRkAHrQ==
   dependencies:
     detect-indent "^7.0.2"
     detect-newline "^4.0.1"
